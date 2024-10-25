@@ -45,4 +45,21 @@ create table Guia (
 )
 
 
+CREATE TABLE Transporte (
+    transId INT PRIMARY KEY NOT NULL,
+    transTipo VARCHAR(20) CHECK (transTipo IN ('Camión', 'Avión', 'Barco')),
+    transCapacidad INT,
+    transPlaca VARCHAR(10),
+    transEmpresa INT,
+    FOREIGN KEY (transEmpresa) REFERENCES Empresa(orgnRif)
+);
+
+CREATE TABLE Factura (
+    facturaId INT PRIMARY KEY NOT NULL,
+    facturaFecha DATE,
+    valorTotal DECIMAL(10, 2),
+    guiaId INT,
+    FOREIGN KEY (guiaId) REFERENCES Guia(guiaId)
+);
+
 
