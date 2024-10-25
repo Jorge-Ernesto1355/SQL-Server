@@ -1,0 +1,48 @@
+create database DB_EnvioMercancia
+use DB_EnvioMercancia
+
+create table Destinatario(
+ destId int primary key not null, 
+ destNom varchar(20), 
+ destCodigoPostal int,
+ destCiudad varchar(20), 
+ destDir varchar(20), 
+ destTelefono int, 
+ destKm int, 
+
+
+)
+
+CREATE TABLE Paquete (
+    codigo INT PRIMARY KEY NOT NULL, 
+    Tipo NVARCHAR(20) CHECK (Tipo IN ('Electrónico', 'Ropa', 'Muebles')),
+    nombre VARCHAR(20),
+    descripcion VARCHAR(50), 
+    valorFlete INT
+
+);
+
+
+create table Empresa (  
+orgnRif int primary key not null,
+orgnNom  varchar(30), 
+orgnAct varchar(20) check (orgnAct In ('Comercial', 'Industrial', 'Servicios', 'Educacion')),
+orgnCiudad varchar(20), 
+orgnTelefono int, 
+
+)
+
+create table Guia (
+ guiaId int primary key not null, 
+ guiaFecha dateTime, 
+ guiahora int, 
+ empresa int,
+ paquete int ,
+ destinatario int, 
+ foreign key(destinatario) references Destinatario,
+ foreign key(paquete) references Paquete,
+ foreign key(empresa) references Empresa
+)
+
+
+
